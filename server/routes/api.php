@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NutrientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('nutrients', NutrientController::class);
+Route::resource('categories', CategoryController::class);
+
+Route::get('restore/nutrients/{id}', [NutrientController::class, 'restore']);
+Route::get('restore/category/{id}', [CategoryController::class, 'restore']);
