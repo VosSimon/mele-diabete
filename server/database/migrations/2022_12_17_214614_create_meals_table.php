@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\UnitEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nutrients', function (Blueprint $table) {
+        Schema::create('meals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
             $table->string('name');
-            $table->float('carbs_in_hundred', 8, 2);
-            $table->enum('unit', UnitEnum::values());
-            $table->float('standard_amount');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nutrients');
+        Schema::dropIfExists('meals');
     }
 };

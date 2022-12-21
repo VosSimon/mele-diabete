@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MealController;
 use App\Http\Controllers\NutrientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('nutrients', NutrientController::class);
 Route::resource('categories', CategoryController::class);
+Route::resource('meals', MealController::class);
 
 Route::get('restore/nutrients/{id}', [NutrientController::class, 'restore']);
-Route::get('restore/category/{id}', [CategoryController::class, 'restore']);
+Route::get('restore/categories/{id}', [CategoryController::class, 'restore']);

@@ -16,7 +16,7 @@ class CategoryResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'nutrients' => NutrientResource::collection($this->nutrients)
+            'nutrients' => NutrientResource::collection($this->whenLoaded('nutrients'))
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NutrientResource extends JsonResource
+class MealResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,7 @@ class NutrientResource extends JsonResource
     {
         return [
             "name" => $this->name,
-            "category" => new CategoryResource($this->category),
-            "carbs_in_hundred" => $this->carbs_in_hundred,
-            "unit" => $this->unit,
-            "standard_amount" => $this->standard_amount
+            'nutrients' => NutrientResource::collection($this->whenLoaded('nutrients'))
         ];
     }
 }

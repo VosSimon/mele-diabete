@@ -10,15 +10,15 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        return CategoryResource::collection(Category::with('nutrients')->get());
     }
 
     public function show(Category $category)
     {
-        return new CategoryResource($category);
+        return new CategoryResource($category->load('nutrients'));
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
