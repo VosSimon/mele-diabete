@@ -25,5 +25,8 @@ Route::resource('nutrients', NutrientController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('meals', MealController::class);
 
+Route::get('favourites/nutrients', [NutrientController::class, 'getFavourites']);
+Route::post('favourites/nutrients', [NutrientController::class, 'updateFavouritesOrder']);
+
 Route::get('restore/nutrients/{id}', [NutrientController::class, 'restore']);
 Route::get('restore/categories/{id}', [CategoryController::class, 'restore']);

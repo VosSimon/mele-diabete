@@ -34,6 +34,7 @@ class NutrientController extends Controller
             'carbs_in_hundred' => 'required|numeric',
             'unit' => [new Enum(UnitEnum::class)],
             'standard_amount' => 'numeric',
+            'favourite_order' => 'numeric'
         ], $messages);
 
         $category = Category::find($request->category_id);
@@ -63,7 +64,8 @@ class NutrientController extends Controller
             'category_id' => 'required|numeric',
             'carbs_in_hundred' => 'required|numeric',
             'unit' => [new Enum(UnitEnum::class)],
-            'standard_amount' => 'numeric',
+            'standard_amount' => 'numeric|nullable',
+            'favourite_order' => 'numeric|nullable'
         ], $messages);
 
         $category = Category::find($request->category_id);
@@ -80,7 +82,7 @@ class NutrientController extends Controller
 
         return [
             "status" => 0,
-            "msg" => "Category not found."
+            "msg" => "Something went wrong."
         ];
     }
 
@@ -101,6 +103,21 @@ class NutrientController extends Controller
         return [
             "status" => 1,
             "msg" => "Nutrient restored successfully"
+        ];
+    }
+
+    public function getFavourites()
+    {
+        return NutrientResource::collection(Nutrient::whereNotNull('favourite_order')->orderBy('favourite_order', 'ASC')->get());
+    }
+
+    public function updateFavouritesOrder(Request $request)
+    {
+        $status = Nutrient::upsert($request->all(), ['id'], ['favourite_order']);
+        return [
+            "status" => 1,
+            "msg" => "Nutrient order updated successfully",
+            "status" => $status
         ];
     }
 }

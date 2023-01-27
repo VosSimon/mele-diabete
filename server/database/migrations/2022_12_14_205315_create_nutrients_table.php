@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('carbs_in_hundred', 8, 2);
             $table->enum('unit', UnitEnum::values());
             $table->float('standard_amount');
+            $table->integer('favourite_order')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

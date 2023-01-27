@@ -15,11 +15,14 @@ class NutrientResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id" => $this->id,
             "name" => $this->name,
-            "category" => new CategoryResource($this->category),
+            "category_id" => $this->category_id,
+            "category" => new CategoryResource($this->whenLoaded('category')),
             "carbs_in_hundred" => $this->carbs_in_hundred,
             "unit" => $this->unit,
-            "standard_amount" => $this->standard_amount
+            "standard_amount" => $this->standard_amount,
+            "favourite_order" => $this->favourite_order
         ];
     }
 }

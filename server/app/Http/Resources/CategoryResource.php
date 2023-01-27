@@ -15,8 +15,9 @@ class CategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
-            'nutrients' => NutrientResource::collection($this->whenLoaded('nutrients'))
+            "id" => $this->id,
+            "name" => $this->name,
+            "nutrients" => NutrientResource::collection($this->whenLoaded('nutrients'))
         ];
     }
 }

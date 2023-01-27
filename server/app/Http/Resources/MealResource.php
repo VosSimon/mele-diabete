@@ -16,7 +16,7 @@ class MealResource extends JsonResource
     {
         return [
             "name" => $this->name,
-            'nutrients' => NutrientResource::collection($this->whenLoaded('nutrients'))
+            "nutrients" => NutrientResource::collection($this->whenLoaded('nutrients'))
         ];
     }
 }

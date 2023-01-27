@@ -1,6 +1,5 @@
 <script lang="ts">
-import MeleFavourites from "@/components/MeleFavourites.vue";
-import MeleSearch from "@/components/MeleSearch.vue";
+import MeleCategoryItem from "@/components/MeleCategoryItem.vue";
 import { useNutrientStore } from "@/stores/nutrient";
 import { defineComponent } from "vue";
 
@@ -10,17 +9,22 @@ export default defineComponent({
       nutrientStore: useNutrientStore(),
     };
   },
-  components: { MeleFavourites, MeleSearch },
+  components: { MeleCategoryItem },
   beforeMount() {
-    this.nutrientStore.getNutrients();
+    this.nutrientStore.getMeals();
   },
 });
 </script>
 
 <template>
   <main>
-    <MeleFavourites />
-    <MeleSearch />
+    <ul class="mele-list">
+      <MeleCategoryItem
+        v-for="(meal, index) in nutrientStore.meals"
+        :key="`meal-${index}`"
+        :data="meal"
+      />
+    </ul>
   </main>
 </template>
 

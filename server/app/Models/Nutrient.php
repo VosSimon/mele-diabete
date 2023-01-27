@@ -18,6 +18,7 @@ class Nutrient extends Model
         'carbs_in_hundred',
         'unit',
         'standard_amount',
+        'favourite_order'
     ];
 
     public function category()
